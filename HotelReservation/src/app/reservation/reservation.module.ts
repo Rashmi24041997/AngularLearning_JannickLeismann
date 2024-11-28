@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HomeModule } from '../home/home.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ReservationService } from './reservation.service';
 
 @NgModule({
   declarations: [
@@ -15,10 +16,11 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule,
     ReactiveFormsModule,
+    RouterModule,
     HomeModule,
     HttpClientModule
-  ]
+  ],
+  providers: [ReservationService]
 })
 export class ReservationModule { }

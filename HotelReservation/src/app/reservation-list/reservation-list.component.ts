@@ -8,22 +8,25 @@ import { Reservation } from '../models/reservation';
   styleUrls: ['./reservation-list.component.css']
 })
 export class ReservationListComponent implements OnInit {
-  editReservation(arg0: string) {
-    throw new Error('Method not implemented.');
-  }
   reservations: Reservation[] = [];
-
-  /**
-   *
-   */
+  
   constructor(private reservationService: ReservationService) { }
 
-  ngOnInit(): void {
-    this.reservations = this.reservationService.getReservations();
+  ngOnInit() {
+    this.reservationService.getReservations().subscribe(
+      reservations => {
+        this.reservations = reservations;
+      }
+    );
+  }
+
+  editReservation(arg0: string) {
+    throw new Error('Method not implemented.');
   }
 
   deleteReservation(id: string) {
     this.reservationService.deleteReservation(id);
+    console.log("Delete succesful");
   }
 
 }

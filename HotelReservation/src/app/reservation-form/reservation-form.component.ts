@@ -4,6 +4,7 @@ import { ReservationService } from '../reservation/reservation.service';
 import { Reservation } from '../models/reservation';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-reservation-form',
@@ -43,10 +44,17 @@ export class ReservationFormComponent implements OnInit {
 
       if (id) {
         // Update
+        this.reservationService.getReservation(id)?.subscribe(
+          reservation1 => {
+            reservation = reservation1;
+          }
+        );
         this.reservationService.updateReservation(id, reservation);
+        console.log('update succesful');
       } else {
         // New
         this.reservationService.addReservation(reservation);
+        console.log('add succesful');
       }
       this.router.navigate(['/list']);
     }
